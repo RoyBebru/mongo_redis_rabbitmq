@@ -48,9 +48,10 @@ def callback(ch, method, properties, body):
     print(f" [x] Done: {method.delivery_tag}")
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
-
-channel.basic_qos(prefetch_count=1)
-channel.basic_consume(queue='tel_queue', on_message_callback=callback)
-
 if __name__ == '__main__':
-    channel.start_consuming()
+    channel.basic_qos(prefetch_count=1)
+    channel.basic_consume(queue='tel_queue', on_message_callback=callback)
+    try:
+        channel.start_consuming()
+    except KeyboardInterrupt:
+        print()
