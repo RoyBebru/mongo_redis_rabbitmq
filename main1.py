@@ -27,7 +27,7 @@ class Author(Document):
     fullname = StringField(max_length=127, required=True)
     description = StringField()
     born_date = DateField()
-    born_location = StringField(max_length=63)
+    born_location = StringField(max_length=127)
 
 class Quote(Document):
     author = ReferenceField(Author, required=True)
